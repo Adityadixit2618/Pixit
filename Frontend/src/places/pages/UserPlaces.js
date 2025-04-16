@@ -21,7 +21,11 @@ const UserPlaces = () => {
         );
         setLoadedPlaces(responseData.places || []);
       } catch (err) {
-        setLoadedPlaces([]);
+        if (err.message && err.message.includes('no places found')) {
+          setLoadedPlaces([]);
+          return;
+        }
+        console.error('Error fetching places:', err);
       }
     };
     fetchPlaces();
@@ -35,7 +39,10 @@ const UserPlaces = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} />
+      <ErrorModal 
+        error={error && !error.includes('no places found') ? error : null} 
+        onClear={clearError} 
+      />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
