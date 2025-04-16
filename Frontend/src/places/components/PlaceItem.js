@@ -8,7 +8,7 @@ import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import { API_BASE_URL, ASSET_URL } from '../../config';
+import { API_BASE_URL } from '../../config';
 import './PlaceItem.css';
 
 const PlaceItem = props => {
@@ -85,7 +85,7 @@ const PlaceItem = props => {
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img
-              src={`${ASSET_URL}/${props.image}`}
+              src={props.image}
               alt={props.title}
             />
           </div>

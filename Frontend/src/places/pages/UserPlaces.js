@@ -8,7 +8,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { API_BASE_URL } from '../../config';
 
 const UserPlaces = () => {
-  const [loadedPlaces, setLoadedPlaces] = useState();
+  const [loadedPlaces, setLoadedPlaces] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const userId = useParams().userId;
@@ -19,8 +19,10 @@ const UserPlaces = () => {
         const responseData = await sendRequest(
           `${API_BASE_URL}/places/user/${userId}`
         );
-        setLoadedPlaces(responseData.places);
-      } catch (err) {}
+        setLoadedPlaces(responseData.places || []);
+      } catch (err) {
+        setLoadedPlaces([]);
+      }
     };
     fetchPlaces();
   }, [sendRequest, userId]);
@@ -39,9 +41,7 @@ const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && (
-        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
-      )}
+      {!isLoading && <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />}
     </React.Fragment>
   );
 };
