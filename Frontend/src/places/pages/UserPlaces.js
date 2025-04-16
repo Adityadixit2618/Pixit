@@ -21,11 +21,11 @@ const UserPlaces = () => {
         );
         setLoadedPlaces(responseData.places || []);
       } catch (err) {
-        // Don't log or handle the error for "no places" case
-        if (!err.message || !err.message.includes('Could not find places')) {
-          setError(err.message);
+        // If the error is "Could not find places", treat as empty list, suppress error modal
+        if (err.message && err.message.includes('Could not find places')) {
+          setLoadedPlaces([]);
         }
-        setLoadedPlaces([]);
+        // For other errors, the error state will be handled by useHttpClient
       }
     };
     fetchPlaces();
@@ -37,10 +37,13 @@ const UserPlaces = () => {
     );
   };
 
+  // Only show ErrorModal if error is present and not the "no places" message
+  const shouldShowError = error && !error.includes('Could not find places');
+
   return (
     <React.Fragment>
       <ErrorModal 
-        error={error && !error.includes('Could not find places') ? error : null} 
+        error={shouldShowError ? error : null} 
         onClear={clearError} 
       />
       {isLoading && (
