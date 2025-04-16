@@ -1,10 +1,51 @@
 .place-form {
   list-style: none;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
   width: 90%;
   max-width: 40rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 6px;
-  background: white;
+  border-radius: 20px;
+  background: radial-gradient(
+    circle at center,
+    rgba(40, 40, 40, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.place-form input,
+.place-form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.place-form input:focus,
+.place-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.place-form label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.place-form button {
+  margin-top: 1.5rem;
 }
