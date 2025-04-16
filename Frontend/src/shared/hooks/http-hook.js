@@ -27,12 +27,20 @@ export const useHttpClient = () => {
         );
 
         if (!response.ok) {
+          if (responseData.message && responseData.message.includes('Could not find places')) {
+            setIsLoading(false);
+            return { places: [] };
+          }
           throw new Error(responseData.message);
         }
 
         setIsLoading(false);
         return responseData;
       } catch (err) {
+        if (err.message && err.message.includes('Could not find places')) {
+          setIsLoading(false);
+          return { places: [] };
+        }
         setError(err.message);
         setIsLoading(false);
         throw err;

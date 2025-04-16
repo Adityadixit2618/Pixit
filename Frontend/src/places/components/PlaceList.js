@@ -10,8 +10,8 @@ const PlaceList = props => {
     return (
       <div className="place-list center">
         <Card>
-          <h2>No places found.</h2>
-          <Button to="/places/new">Share Place</Button>
+          <h2>No places shared yet.</h2>
+          <Button to="/places/new">Share a Place</Button>
         </Card>
       </div>
     );
