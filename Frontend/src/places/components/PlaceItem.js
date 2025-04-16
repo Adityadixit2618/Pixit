@@ -8,6 +8,7 @@ import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import { API_BASE_URL, ASSET_URL } from '../../config';
 import './PlaceItem.css';
 
 const PlaceItem = props => {
@@ -32,7 +33,7 @@ const PlaceItem = props => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/places/${props.id}`,
+        `${API_BASE_URL}/places/${props.id}`,
         'DELETE',
         null,
         {
@@ -84,7 +85,7 @@ const PlaceItem = props => {
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img
-              src={`http://localhost:5000/${props.image}`}
+              src={`${ASSET_URL}/${props.image}`}
               alt={props.title}
             />
           </div>
