@@ -1,0 +1,60 @@
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+}
+
+.form-control label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: left;
+}
+
+.form-control input,
+.form-control textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.form-control--invalid label,
+.form-control--invalid p {
+  color: var(--danger-color);
+}
+
+.form-control--invalid input,
+.form-control--invalid textarea {
+  border-color: var(--danger-color);
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.form-control--invalid input:focus,
+.form-control--invalid textarea:focus {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.form-control p {
+  color: var(--danger-color);
+  margin: 0.5rem 0 0 0;
+  font-size: 0.9rem;
+  text-align: left;
+}

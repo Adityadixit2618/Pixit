@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm install"
+
+[deploy]
+startCommand = "node app.js"
+healthcheckPath = "/api/users"
+healthcheckTimeout = 100
+
+[env]
+NODE_ENV = "production" 

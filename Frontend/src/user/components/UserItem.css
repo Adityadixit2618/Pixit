@@ -1,0 +1,130 @@
+.user-item {
+  margin: 1rem;
+  width: 300px;
+  min-width: 17.5rem;
+  position: relative;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+/* Parent container hover effect */
+.users-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.users-grid:has(.user-item:hover) .user-item:not(:hover) {
+  opacity: 0.1;
+  transform: scale(0.95);
+}
+
+.user-item:hover {
+  transform: translateY(-5px);
+  z-index: 2;
+}
+
+.user-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  padding: 1.5rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(40, 40, 40, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.user-item__content {
+  padding: 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-item__image {
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border-radius: 50%;
+  background: #000;
+}
+
+.user-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-item__info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.user-item__info h2 {
+  font-size: 1.75rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.user-item__stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-item__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-item__stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.user-item__stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.user-item__places {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.user-item:hover h2,
+.user-item:active h2,
+.user-item:hover h3,
+.user-item:active h3 {
+  color: #292929;
+}
+
+.user-item__info h3 {
+  margin: 0;
+}

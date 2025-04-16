@@ -1,0 +1,56 @@
+.card {
+  margin: 0;
+  border-radius: 20px;
+  padding: 2rem;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at center,
+    rgba(40, 40, 40, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.card h2 {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.card label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.card input,
+.card textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.card input:focus,
+.card textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card button {
+  margin-top: 1.5rem;
+}
