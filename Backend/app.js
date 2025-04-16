@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -47,10 +48,15 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI;
+
 mongoose
-  .connect('mongodb+srv://Adins:99589@cluster0.ei21h.mongodb.net/mern?retryWrites=true&w=majority&appName=Cluster0')
+  .connect(MONGODB_URI)
   .then(() => {
-    app.listen(5000);
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   })
   .catch(err => {
     console.log(err);
