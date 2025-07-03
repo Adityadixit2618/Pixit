@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
@@ -35,7 +35,7 @@ const Profile = () => {
     false
   );
 
-  const fetchAndSetUser = async () => {
+  const fetchAndSetUser = useCallback(async () => {
     try {
       const response = await sendRequest(`${API_BASE_URL}/users/${auth.userId}`);
       console.log('Fetched user:', response.user);
@@ -50,7 +50,7 @@ const Profile = () => {
     } catch (err) {
       console.error('Error fetching user:', err);
     }
-  };
+  }, [sendRequest, auth.userId, setFormData]);
 
   useEffect(() => {
     if (!auth.userId) {
@@ -58,7 +58,7 @@ const Profile = () => {
       return;
     }
     fetchAndSetUser();
-  }, [sendRequest, auth.userId, setFormData, history, fetchAndSetUser]);
+  }, [fetchAndSetUser, history, auth.userId]);
 
   const profileSubmitHandler = async event => {
     event.preventDefault();
