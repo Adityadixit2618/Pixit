@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
+console.log('Loaded EMAIL_USER:', process.env.EMAIL_USER);
+console.log('Loaded EMAIL_PASS:', process.env.EMAIL_PASS ? 'Exists' : 'Missing');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -17,13 +19,25 @@ app.use(bodyParser.json());
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://pixit-delta.vercel.app');
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'https://pixit-delta.vercel.app'
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'null'); // For debugging, you can remove this in production
+  }
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
   next();
 });
 

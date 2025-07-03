@@ -28,6 +28,8 @@ const UsersList = props => {
             image={user.image}
             name={user.name}
             placeCount={user.places.length}
+            isAdmin={props.isAdmin}
+            onDeleteUser={props.onDeleteUser}
           />
         </div>
       ))}

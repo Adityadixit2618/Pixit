@@ -33,6 +33,13 @@ const Input = props => {
   const { value, isValid } = inputState;
 
   useEffect(() => {
+    if (props.value !== undefined && props.value !== value) {
+      dispatch({ type: 'CHANGE', val: props.value, validators: props.validators });
+    }
+    // eslint-disable-next-line
+  }, [props.value]);
+
+  useEffect(() => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
@@ -58,7 +65,7 @@ const Input = props => {
         placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}
-        value={inputState.value}
+        value={props.value !== undefined ? props.value : inputState.value}
       />
     ) : (
       <textarea
@@ -66,7 +73,7 @@ const Input = props => {
         rows={props.rows || 3}
         onChange={changeHandler}
         onBlur={touchHandler}
-        value={inputState.value}
+        value={props.value !== undefined ? props.value : inputState.value}
       />
     );
 

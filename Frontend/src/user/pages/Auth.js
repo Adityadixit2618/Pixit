@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import Card from '../../shared/components/UIElements/Card';
 import Input from '../../shared/components/FormElements/Input';
@@ -89,7 +90,7 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
-        auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId, responseData.token, responseData.image, responseData.isAdmin);
       } catch (err) {}
     } else {
       try {
@@ -104,7 +105,7 @@ const Auth = () => {
           formData
         );
 
-        auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId, responseData.token, responseData.image, responseData.isAdmin);
       } catch (err) {}
     }
   };
@@ -158,6 +159,11 @@ const Auth = () => {
             {isLoginMode ? 'LOGIN' : 'SIGN UP'}
           </Button>
         </form>
+        {isLoginMode && (
+          <div style={{ marginTop: '1rem' }}>
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
+        )}
         <Button inverse onClick={switchModeHandler}>
           SWITCH TO {isLoginMode ? 'SIGN UP' : 'LOGIN'}
         </Button>

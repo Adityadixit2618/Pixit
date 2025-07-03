@@ -20,6 +20,11 @@ const UserItem = props => {
             </div>
           </div>
         </Link>
+        {props.isAdmin && (
+          <button className="admin-delete-btn" onClick={() => props.onDeleteUser(props.id)}>
+            Delete
+          </button>
+        )}
       </Card>
     </div>
   );

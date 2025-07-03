@@ -3,6 +3,8 @@ const { check } = require('express-validator');
 
 const usersController = require('../controllers/users-controllers');
 const fileUpload = require('../middleware/file-upload');
+const checkAuth = require('../middleware/check-auth');
+const adminCheck = require('../middleware/admin-check');
 
 const router = express.Router();
 
@@ -24,5 +26,16 @@ router.post(
 );
 
 router.post('/login', usersController.login);
+
+router.post('/forgot-password', usersController.forgotPassword);
+router.post('/reset-password/:token', usersController.resetPassword);
+
+router.get('/:uid', usersController.getUserById);
+
+router.use(checkAuth);
+router.patch('/profile', usersController.updateProfile);
+router.post('/update-password', usersController.updatePassword);
+
+router.delete('/:uid', checkAuth, adminCheck, usersController.deleteUser);
 
 module.exports = router;
