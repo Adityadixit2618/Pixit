@@ -58,7 +58,7 @@ const Profile = () => {
       return;
     }
     fetchAndSetUser();
-  }, [sendRequest, auth.userId, setFormData, history]);
+  }, [sendRequest, auth.userId, setFormData, history, fetchAndSetUser]);
 
   const profileSubmitHandler = async event => {
     event.preventDefault();
