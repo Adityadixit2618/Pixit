@@ -194,7 +194,7 @@ const forgotPassword = async (req, res, next) => {
     });
 
     // Use frontend URL for reset link
-    const resetUrl = `http://localhost:3000/reset-password/${token}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
     await transporter.sendMail({
       to: user.email,
       from: 'vitvellore34@gmail.com',
